@@ -4,12 +4,11 @@
 <head>
 
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Coffee Shop</title>
 
 <link rel="stylesheet" href="style.css">
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </head>
 
@@ -79,7 +78,7 @@
 
 </table>
 
-<h3>รวม: <span id="total">0</span></h3>
+<h3>รวม: <span id="total">0</span> บาท</h3>
 
 <input id="money" placeholder="รับเงินลูกค้า">
 
@@ -87,18 +86,13 @@
 
 <h3>เงินทอน: <span id="change">0</span></h3>
 
-<button onclick="printReceipt()">พิมพ์ใบเสร็จ</button>
+<button onclick="printReceipt()">พิมพ์สลิป</button>
 
 </div>
 
 </div>
-
-<h2>ยอดขาย</h2>
-
-<canvas id="saleChart"></canvas>
 
 <script src="script.js"></script>
-<script src="chart.js"></script>
 
 </body>
 </html>
