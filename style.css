@@ -1,114 +1,123 @@
-body{
-font-family:Arial;
-margin:0;
-background:#f2f2f2;
+let cart=[]
+let total=0
+
+function addItem(name,price){
+
+let item=cart.find(i=>i.name===name)
+
+if(item){
+item.qty++
+}else{
+cart.push({name,price,qty:1})
 }
 
-header{
-background:#5a3e2b;
-color:white;
-text-align:center;
-padding:15px;
-font-size:24px;
-}
-
-#search{
-margin:15px;
-padding:10px;
-width:90%;
-max-width:400px;
-}
-
-.container{
-display:flex;
-padding:15px;
-gap:20px;
-}
-
-.menu{
-flex:2;
-display:flex;
-flex-wrap:wrap;
-gap:10px;
-}
-
-.item{
-width:140px;
-background:white;
-border-radius:10px;
-padding:10px;
-text-align:center;
-cursor:pointer;
-box-shadow:0 0 5px rgba(0,0,0,0.2);
-}
-
-.item img{
-width:100%;
-height:100px;
-object-fit:cover;
-border-radius:8px;
-}
-
-.cart{
-flex:1;
-background:white;
-padding:15px;
-border-radius:10px;
-}
-
-table{
-width:100%;
-border-collapse:collapse;
-}
-
-th,td{
-border-bottom:1px solid #ddd;
-padding:6px;
-text-align:center;
-}
-
-button{
-padding:10px;
-margin-top:10px;
-width:100%;
-font-size:16px;
-cursor:pointer;
-}
-
-.login-box{
-width:300px;
-margin:120px auto;
-background:white;
-padding:20px;
-text-align:center;
-border-radius:10px;
-box-shadow:0 0 5px rgba(0,0,0,0.2);
-}
-
-.login-box input{
-width:90%;
-padding:10px;
-margin:10px;
-}
-
-/* รองรับมือถือ */
-
-@media (max-width:768px){
-
-.container{
-flex-direction:column;
-}
-
-.menu{
-justify-content:center;
-}
-
-.item{
-width:45%;
-}
-
-.cart{
-width:100%;
-}
+renderCart()
 
 }
+
+function removeItem(i){
+
+cart.splice(i,1)
+
+renderCart()
+
+}
+
+function renderCart(){
+
+let table=document.getElementById("cartTable")
+
+table.innerHTML=`
+<tr>
+<th>สินค้า</th>
+<th>ราคา</th>
+<th>จำนวน</th>
+<th>รวม</th>
+<th></th>
+</tr>
+`
+
+total=0
+
+cart.forEach((item,i)=>{
+
+let sum=item.price*item.qty
+total+=sum
+
+table.innerHTML+=`
+<tr>
+<td>${item.name}</td>
+<td>${item.price}</td>
+<td>${item.qty}</td>
+<td>${sum}</td>
+<td><button onclick="removeItem(${i})">X</button></td>
+</tr>
+`
+
+})
+
+document.getElementById("total").innerText=total
+
+}
+
+function pay(){
+
+let money=document.getElementById("money").value
+let change=money-total
+
+document.getElementById("change").innerText=change
+
+}
+
+function printReceipt(){
+
+let money=document.getElementById("money").value
+let change=money-total
+
+let now=new Date()
+
+let date=now.toLocaleDateString()
+let time=now.toLocaleTimeString()
+
+let w=window.open()
+
+w.document.write(`
+<h2>Coffee Shop</h2>
+<hr>
+วันที่: ${date}<br>
+เวลา: ${time}
+<hr>
+`)
+
+cart.forEach(i=>{
+w.document.write(`${i.name} x${i.qty} = ${i.price*i.qty}<br>`)
+})
+
+w.document.write(`
+<hr>
+รวมทั้งหมด: ${total} บาท<br>
+รับเงิน: ${money} บาท<br>
+เงินทอน: ${change} บาท
+<hr>
+ขอบคุณที่ใช้บริการ
+`)
+
+w.print()
+
+}
+
+function searchMenu(){
+
+let input=document.getElementById("search").value.toLowerCase()
+
+let items=document.querySelectorAll(".item")
+
+items.forEach(item=>{
+
+let text=item.innerText.toLowerCase()
+
+item.style.display=text.includes(input)?"block":"none"
+
+})
+
+  }
