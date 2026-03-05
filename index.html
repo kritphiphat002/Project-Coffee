@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Coffee Shop</title>
+
+<link rel="stylesheet" href="style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+<header>
+☕ Coffee Shop
+</header>
+
+<input type="text" id="search" placeholder="ค้นหาเมนู..." onkeyup="searchMenu()">
+
+<div class="container">
+
+<div class="menu">
+
+<div class="item" onclick="addItem('Espresso',50)">
+<img src="https://images.unsplash.com/photo-1510707577719-ae7c14805e3a">
+<p>Espresso</p>
+<p>50 บาท</p>
+</div>
+
+<div class="item" onclick="addItem('Latte',60)">
+<img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735">
+<p>Latte</p>
+<p>60 บาท</p>
+</div>
+
+<div class="item" onclick="addItem('Cappuccino',65)">
+<img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93">
+<p>Cappuccino</p>
+<p>65 บาท</p>
+</div>
+
+<div class="item" onclick="addItem('Mocha',70)">
+<img src="https://images.unsplash.com/photo-1498804103079-a6351b050096">
+<p>Mocha</p>
+<p>70 บาท</p>
+</div>
+
+<div class="item" onclick="addItem('Croissant',45)">
+<img src="https://images.unsplash.com/photo-1509440159596-0249088772ff">
+<p>Croissant</p>
+<p>45 บาท</p>
+</div>
+
+<div class="item" onclick="addItem('Cake',80)">
+<img src="https://images.unsplash.com/photo-1559622214-f8a9850965bb">
+<p>Cake</p>
+<p>80 บาท</p>
+</div>
+
+</div>
+
+<div class="cart">
+
+<h2>รายการสั่งซื้อ</h2>
+
+<table id="cartTable">
+
+<tr>
+<th>สินค้า</th>
+<th>ราคา</th>
+<th>จำนวน</th>
+<th>รวม</th>
+<th></th>
+</tr>
+
+</table>
+
+<h3>รวม: <span id="total">0</span></h3>
+
+<input id="money" placeholder="รับเงินลูกค้า">
+
+<button onclick="pay()">คิดเงิน</button>
+
+<h3>เงินทอน: <span id="change">0</span></h3>
+
+<button onclick="printReceipt()">พิมพ์ใบเสร็จ</button>
+
+</div>
+
+</div>
+
+<h2>ยอดขาย</h2>
+
+<canvas id="saleChart"></canvas>
+
+<script src="script.js"></script>
+<script src="chart.js"></script>
+
+</body>
+</html>
