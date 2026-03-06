@@ -1,123 +1,89 @@
-let cart=[]
-let total=0
-
-function addItem(name,price){
-
-let item=cart.find(i=>i.name===name)
-
-if(item){
-item.qty++
-}else{
-cart.push({name,price,qty:1})
+body{
+font-family:sans-serif;
+margin:0;
+background:#f5f5f5;
 }
 
-renderCart()
-
+.title{
+text-align:center;
+background:#6b3e26;
+color:white;
+padding:15px;
+margin:0;
 }
 
-function removeItem(i){
-
-cart.splice(i,1)
-
-renderCart()
-
+.container{
+display:flex;
+flex-wrap:wrap;
 }
 
-function renderCart(){
-
-let table=document.getElementById("cartTable")
-
-table.innerHTML=`
-<tr>
-<th>สินค้า</th>
-<th>ราคา</th>
-<th>จำนวน</th>
-<th>รวม</th>
-<th></th>
-</tr>
-`
-
-total=0
-
-cart.forEach((item,i)=>{
-
-let sum=item.price*item.qty
-total+=sum
-
-table.innerHTML+=`
-<tr>
-<td>${item.name}</td>
-<td>${item.price}</td>
-<td>${item.qty}</td>
-<td>${sum}</td>
-<td><button onclick="removeItem(${i})">X</button></td>
-</tr>
-`
-
-})
-
-document.getElementById("total").innerText=total
-
+.menu{
+width:60%;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+gap:15px;
+padding:20px;
 }
 
-function pay(){
-
-let money=document.getElementById("money").value
-let change=money-total
-
-document.getElementById("change").innerText=change
-
+.item{
+background:white;
+border-radius:10px;
+padding:10px;
+text-align:center;
+cursor:pointer;
+box-shadow:0 2px 5px rgba(0,0,0,0.2);
 }
 
-function printReceipt(){
-
-let money=document.getElementById("money").value
-let change=money-total
-
-let now=new Date()
-
-let date=now.toLocaleDateString()
-let time=now.toLocaleTimeString()
-
-let w=window.open()
-
-w.document.write(`
-<h2>Coffee Shop</h2>
-<hr>
-วันที่: ${date}<br>
-เวลา: ${time}
-<hr>
-`)
-
-cart.forEach(i=>{
-w.document.write(`${i.name} x${i.qty} = ${i.price*i.qty}<br>`)
-})
-
-w.document.write(`
-<hr>
-รวมทั้งหมด: ${total} บาท<br>
-รับเงิน: ${money} บาท<br>
-เงินทอน: ${change} บาท
-<hr>
-ขอบคุณที่ใช้บริการ
-`)
-
-w.print()
-
+.item img{
+width:100%;
+height:90px;
+object-fit:cover;
+border-radius:8px;
 }
 
-function searchMenu(){
+.pos{
+width:40%;
+background:white;
+padding:20px;
+border-left:2px solid #ddd;
+}
 
-let input=document.getElementById("search").value.toLowerCase()
+button{
+width:100%;
+padding:10px;
+background:#6b3e26;
+color:white;
+border:none;
+margin-top:10px;
+font-size:16px;
+}
 
-let items=document.querySelectorAll(".item")
+input{
+width:100%;
+padding:8px;
+margin-top:10px;
+}
 
-items.forEach(item=>{
+#receipt{
+margin-top:20px;
+background:#fafafa;
+padding:10px;
+border:1px dashed #aaa;
+font-size:14px;
+}
 
-let text=item.innerText.toLowerCase()
+/* มือถือ */
 
-item.style.display=text.includes(input)?"block":"none"
+@media(max-width:768px){
 
-})
+.menu{
+width:100%;
+}
 
-  }
+.pos{
+width:100%;
+border-left:none;
+border-top:2px solid #ddd;
+}
+
+}
