@@ -1,92 +1,51 @@
-<!DOCTYPE html>
-<html lang="th">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Coffee Shop</title>
-
-<link rel="stylesheet" href="style.css">
-</head>
-
-<body>
-
-<h1 class="title">Coffee Shop</h1>
-
-<div class="container">
-
 <div class="menu">
 
 <div class="item" onclick="addItem('Espresso',50)">
-<img src="https://images.unsplash.com/photo-1510707577719-ae7c14805e0b">
+<img src="https://source.unsplash.com/300x200/?espresso">
 <p>Espresso</p>
 <p>50 บาท</p>
 </div>
 
 <div class="item" onclick="addItem('Latte',60)">
-<img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93">
+<img src="https://source.unsplash.com/300x200/?latte">
 <p>Latte</p>
 <p>60 บาท</p>
 </div>
 
 <div class="item" onclick="addItem('Cappuccino',60)">
-<img src="https://images.unsplash.com/photo-1534778101976-62847782c213">
+<img src="https://source.unsplash.com/300x200/?cappuccino">
 <p>Cappuccino</p>
 <p>60 บาท</p>
 </div>
 
 <div class="item" onclick="addItem('ชาไทย',50)">
-<img src="https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec">
+<img src="https://source.unsplash.com/300x200/?thai-tea">
 <p>ชาไทย</p>
 <p>50 บาท</p>
 </div>
 
 <div class="item" onclick="addItem('นมชมพู',45)">
-<img src="https://images.unsplash.com/photo-1551024709-8f23befc6c1a">
+<img src="https://source.unsplash.com/300x200/?pink-milk">
 <p>นมชมพู</p>
 <p>45 บาท</p>
 </div>
 
 <div class="item" onclick="addItem('โดนัท',35)">
-<img src="https://images.unsplash.com/photo-1551024601-bec78aea704b">
+<img src="https://source.unsplash.com/300x200/?donut">
 <p>Donut</p>
 <p>35 บาท</p>
 </div>
 
 <div class="item" onclick="addItem('เค้กช็อกโกแลต',80)">
-<img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587">
+<img src="https://source.unsplash.com/300x200/?chocolate-cake">
 <p>Chocolate Cake</p>
 <p>80 บาท</p>
 </div>
 
 <div class="item" onclick="addItem('ครัวซองต์',55)">
-<img src="https://images.unsplash.com/photo-1509440159596-0249088772ff">
+<img src="https://source.unsplash.com/300x200/?croissant">
 <p>Croissant</p>
 <p>55 บาท</p>
 </div>
 
 </div>
-
-<div class="pos">
-
-<h2>รายการสั่งซื้อ</h2>
-
-<ul id="cart"></ul>
-
-<h3>รวม: <span id="total">0</span> บาท</h3>
-
-<input id="money" placeholder="รับเงิน">
-
-<button onclick="pay()">ชำระเงิน</button>
-
-<button onclick="saveReceipt()">บันทึกสลิป</button>
-
-<div id="receipt"></div>
-
-</div>
-
-</div>
-
-<script src="script.js"></script>
-
-</body>
-</html>
