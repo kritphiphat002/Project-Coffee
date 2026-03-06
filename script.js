@@ -1,91 +1,81 @@
-let cart=[]
-let total=0
+let cart = []
+let total = 0
 
 function addItem(name,price){
 
-let item=cart.find(i=>i.name===name)
+cart.push({name,price})
 
-if(item){
-item.qty++
-}else{
-cart.push({name,price,qty:1})
-}
+total += price
 
-renderCart()
+updateCart()
 
 }
 
-function removeItem(i){
+function updateCart(){
 
-cart.splice(i,1)
+let cartList = document.getElementById("cart")
 
-renderCart()
+cartList.innerHTML=""
 
-}
+cart.forEach(item=>{
 
-function renderCart(){
+let li = document.createElement("li")
 
-let table=document.getElementById("cartTable")
+li.textContent = item.name+" - "+item.price+" บาท"
 
-table.innerHTML=`
-<tr>
-<th>สินค้า</th>
-<th>ราคา</th>
-<th>จำนวน</th>
-<th>รวม</th>
-<th></th>
-</tr>
-`
-
-total=0
-
-cart.forEach((item,i)=>{
-
-let sum=item.price*item.qty
-
-total+=sum
-
-table.innerHTML+=`
-<tr>
-<td>${item.name}</td>
-<td>${item.price}</td>
-<td>${item.qty}</td>
-<td>${sum}</td>
-<td><button onclick="removeItem(${i})">X</button></td>
-</tr>
-`
+cartList.appendChild(li)
 
 })
 
-document.getElementById("total").innerText=total
+document.getElementById("total").innerText = total
 
 }
 
 function pay(){
 
-let money=document.getElementById("money").value
+let money = parseFloat(document.getElementById("money").value)
 
-let change=money-total
+if(money < total){
 
-document.getElementById("change").innerText=change
+alert("เงินไม่พอ")
+
+return
 
 }
 
-function printReceipt(){
+let change = money-total
 
-let w=window.open()
+let now = new Date()
 
-w.document.write(`
-<h3>Coffee Shop</h3>
+let date = now.toLocaleDateString()
+
+let time = now.toLocaleTimeString()
+
+let receipt = `
+<h3>ใบเสร็จ Coffee Shop</h3>
+วันที่: ${date}<br>
+เวลา: ${time}<br>
 <hr>
-`)
+`
 
-cart.forEach(i=>{
-w.document.write(`${i.name} x${i.qty} = ${i.price*i.qty}<br>`)
+cart.forEach(item=>{
+
+receipt += item.name+" "+item.price+" บาท<br>"
+
 })
 
-w.document.write(`<hr>Total ${total}`)
+receipt += `
+<hr>
+รวม: ${total} บาท<br>
+รับเงิน: ${money} บาท<br>
+เงินทอน: ${change} บาท
+`
 
-w.print()
+document.getElementById("receipt").innerHTML = receipt
+
+cart=[]
+total=0
+
+updateCart()
 
 }
